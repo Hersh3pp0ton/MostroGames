@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
             gameOverSprite.SetActive(true);
             restartButton.SetActive(true);
             returnToMenuButton.SetActive(true);
+
         } else {
             gameOverSprite.SetActive(false);
             restartButton.SetActive(false);
