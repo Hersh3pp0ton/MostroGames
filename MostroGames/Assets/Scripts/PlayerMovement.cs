@@ -20,8 +20,7 @@ public class PlayerMovement : MonoBehaviour {
         if(isGameOver) {
             gameOverSprite.SetActive(true);
             restartButton.SetActive(true);
-        }
-        if(!isGameOver) {
+        } else {
             gameOverSprite.SetActive(false);
             restartButton.SetActive(false);
         }
