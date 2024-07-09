@@ -5,6 +5,8 @@ public class MoveTubes : MonoBehaviour {
     private float moveSpeed = 5f;
     private float xLimit = -4f;
 
+    public static bool giaContato = false;
+
     void Update() {
         if(!PlayerMovement.isGameOver) {
             transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
