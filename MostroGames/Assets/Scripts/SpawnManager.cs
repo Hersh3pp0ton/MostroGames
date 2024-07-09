@@ -13,8 +13,10 @@ public class SpawnManager : MonoBehaviour {
     }
 
     void SpawnTubes() {
-        float ySpawn = Random.Range(-2.3f, 1f);
-        Instantiate(tubePrefab, new Vector3(xSpawn, ySpawn, 0), Quaternion.Euler(0, 0, 0));
-        Invoke("SpawnTubes", repeatingDelay);
+        if(!PlayerMovement.isGameOver) {
+            float ySpawn = Random.Range(-5.35f, -1.7f);
+            Instantiate(tubePrefab, new Vector3(xSpawn, ySpawn, 0), Quaternion.identity);
+            Invoke("SpawnTubes", repeatingDelay);
+        }
     }
 }

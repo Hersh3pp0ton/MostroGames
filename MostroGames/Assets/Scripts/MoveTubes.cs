@@ -6,9 +6,11 @@ public class MoveTubes : MonoBehaviour {
     private float xLimit = -4f;
 
     void Update() {
-        transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-        if(transform.position.x < xLimit) {
-            Destroy(gameObject);
+        if(!PlayerMovement.isGameOver) {
+            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+            if (transform.position.x < xLimit) {
+                Destroy(gameObject);
+            }
         }
     }
 }

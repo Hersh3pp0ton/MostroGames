@@ -11,9 +11,11 @@ public class MoveFloor : MonoBehaviour {
     }
 
     void Update() {
-        transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
-        if(transform.position.x <= xLimit) {
-            transform.position = startPos;
+        if(!PlayerMovement.isGameOver) {
+            transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
+            if (transform.position.x <= xLimit) {
+                transform.position = startPos;
+            }
         }
     }
 }
