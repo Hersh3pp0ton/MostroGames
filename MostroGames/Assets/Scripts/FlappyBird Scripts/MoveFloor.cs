@@ -11,7 +11,7 @@ public class MoveFloor : MonoBehaviour {
     }
 
     void Update() {
-        if(!PlayerMovement.isGameOver) {
+        if(!PlayerMovement.isGameOver && !PauseButton.isPaused) {
             transform.Translate(-moveSpeed * Time.deltaTime, 0, 0);
             if (transform.position.x <= xLimit) {
                 transform.position = startPos;

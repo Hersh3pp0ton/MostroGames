@@ -10,16 +10,14 @@ public class SpawnManager : MonoBehaviour {
     private float xSpawn = 4f;
 
     void Start() {
-        Invoke("SpawnTubes", startDelayTime);   
+        InvokeRepeating("SpawnTubes", startDelayTime, repeatingDelay);
     }
 
     void SpawnTubes() {
-        if(!PlayerMovement.isGameOver) {
+        if(!PlayerMovement.isGameOver && !PauseButton.isPaused) {
             float ySpawn = Random.Range(-5.35f, -1.7f);
             coppiaTubi = Instantiate(tubePrefab, new Vector3(xSpawn, ySpawn, 0), 
                 Quaternion.identity);
-
-            Invoke("SpawnTubes", repeatingDelay);
         }
     }
 }

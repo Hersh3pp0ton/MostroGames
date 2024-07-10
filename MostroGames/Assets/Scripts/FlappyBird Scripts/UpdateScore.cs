@@ -13,7 +13,7 @@ public class UpdateScore : MonoBehaviour {
     }
 
     void UpdateScoreText() {
-        if(!PlayerMovement.isGameOver) {
+        if(!PlayerMovement.isGameOver && !PauseButton.isPaused) {
             score++;
             audioSource.Play();
             scoreText.text = score.ToString();
