@@ -6,13 +6,10 @@ public class ButtonController : MonoBehaviour, IPointerDownHandler, IPointerUpHa
     public void OnPointerDown(PointerEventData eventData) {
         if (gameObject.name == "Right") {
             PlayerController.isMovingRight = true;
-            Debug.Log("Right!");
         } else if (gameObject.name == "Left") {
             PlayerController.isMovingLeft = true;
-            Debug.Log("Left");
         } else if(gameObject.name == "Up") {
             PlayerController.isFiring = true;
-            Debug.Log("Up!");
         } 
     }
 
