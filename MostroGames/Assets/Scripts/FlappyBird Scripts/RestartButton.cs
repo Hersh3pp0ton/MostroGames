@@ -5,7 +5,9 @@ public class RestartButton : MonoBehaviour {
 
     public void RestartGame() {
         PlayerMovement.isGameOver = false;
-        SceneManager.LoadScene(1);
+        PlayerController.isGameOver = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         UpdateScore.score = 0;
+        PlayerController.score = 0;
     }
 }

@@ -9,5 +9,7 @@ public class ChangeGameButton : MonoBehaviour {
     
     public void ChangeToMostroInvaders() {
         SceneManager.LoadScene(2);
+        PlayerController.isGameOver = false;
+        PlayerController.score = 0;
     }
 }

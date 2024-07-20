@@ -6,10 +6,12 @@ public class BulletController : MonoBehaviour {
     private float yLimitForBullet = 7f;
 
     private void Update() {
-        transform.Translate(Vector3.up * bulletSpeed * Time.deltaTime);
+        if(!PlayerController.isGameOver && !PauseButton.isPaused) {
+            transform.Translate(Vector3.up * bulletSpeed * Time.deltaTime);
 
-        if (transform.position.y >= yLimitForBullet) {
-            Destroy(gameObject);
+            if (transform.position.y >= yLimitForBullet) {
+                Destroy(gameObject);
+            }
         }
-    }  
+    }
 }
