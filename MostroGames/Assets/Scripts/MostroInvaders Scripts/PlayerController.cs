@@ -28,11 +28,14 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if(!isGameOver && !PauseButton.isPaused) {
-            if (isMovingLeft) {
+            if (isMovingLeft || Input.GetKey(KeyCode.LeftArrow)) {
                 transform.Translate(Vector3.down * playerSpeed * Time.deltaTime);
-            } else if (isMovingRight) {
+
+            } if (isMovingRight || Input.GetKey(KeyCode.RightArrow)) {
                 transform.Translate(Vector3.up * playerSpeed * Time.deltaTime);
-            } else if (isFiring && Time.time > nextBulletShootTime) {
+
+            }  if ((isFiring || Input.GetKey(KeyCode.UpArrow)) 
+                && Time.time > nextBulletShootTime) {
                 int index = Random.Range(0, 3);
                 GameObject bulletShot = Instantiate(bullet[index],
                     transform.position + offset,
@@ -43,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 
             if (transform.position.x >= limit) {
                 transform.position = new(limit, yPos, 0);
+
             } else if (transform.position.x <= -limit) {
                 transform.position = new(-limit, yPos, 0);
             }

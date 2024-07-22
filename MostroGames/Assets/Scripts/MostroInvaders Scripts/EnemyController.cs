@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour {
 
     private Vector3 offset = new Vector3(0f, -0.5f, 0f);
 
-    private float startDelay = 1, repeatingDelay = 1f;
+    private float startDelay = 0.5f, repeatingDelay = 1f;
 
     void Start() {
         InvokeRepeating("SpawnBullet", startDelay, repeatingDelay);
