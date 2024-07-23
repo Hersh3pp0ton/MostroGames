@@ -5,10 +5,8 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject[] enemies = new GameObject[2];
     public GameObject bossPrefab;
 
-    private GameObject boss;
-
     private float startDelay = 2f;
-    private float repeatingDelay = 2f;
+    [HideInInspector] public static float repeatingDelay = 2f;
 
     [HideInInspector] public static bool isBossWave = false;
     [HideInInspector] public static bool isBossSpawned = false;
@@ -18,15 +16,11 @@ public class EnemySpawner : MonoBehaviour {
     }
 
     void Update() {
-        if(PlayerController.score == 10) {
-            isBossWave = true;
-        }
+        if((PlayerController.score % 10 == 0) && PlayerController.score != 0) isBossWave = true;
 
         if(isBossWave) {
             if(!isBossSpawned) {
-                boss = Instantiate(bossPrefab,
-                    new(0, 7, 0),
-                    bossPrefab.transform.rotation);
+                Instantiate(bossPrefab, new(0, 7, 0), bossPrefab.transform.rotation);
 
                 isBossSpawned = true;
             }

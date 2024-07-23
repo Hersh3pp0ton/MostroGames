@@ -8,7 +8,13 @@ public class PlayerController : MonoBehaviour {
     public GameObject gameOverCanva;
     public Text scoreText;
 
+    private AudioSource audioSource;
+    public AudioClip onBossDeath;
+    public AudioClip onEnemyDeath;
+    public AudioClip fireSound;
+
     [HideInInspector] public static int score = 0;
+    [HideInInspector] public static bool playGameOverSound = false;
 
     public float playerSpeed = 5.0f;
 
@@ -26,6 +32,10 @@ public class PlayerController : MonoBehaviour {
 
     private Vector3 offset = new(0, 0.8f, 0);
 
+    void Start() {
+        audioSource = GetComponent<AudioSource>();    
+    }
+
     void Update() {
         if(!isGameOver && !PauseButton.isPaused) {
             if (isMovingLeft || Input.GetKey(KeyCode.LeftArrow)) {
@@ -36,6 +46,9 @@ public class PlayerController : MonoBehaviour {
 
             }  if ((isFiring || Input.GetKey(KeyCode.UpArrow)) 
                 && Time.time > nextBulletShootTime) {
+
+                audioSource.PlayOneShot(fireSound);
+
                 int index = Random.Range(0, 3);
                 GameObject bulletShot = Instantiate(bullet[index],
                     transform.position + offset,
@@ -52,6 +65,15 @@ public class PlayerController : MonoBehaviour {
             }
 
             scoreText.text = score.ToString();
+
+            if(BossController.isBossDead) {
+                audioSource.PlayOneShot(onBossDeath);
+                BossController.isBossDead = false;
+            }
+            if(EnemyController.isEnemyDead) {
+                audioSource.PlayOneShot(onEnemyDeath);
+                EnemyController.isEnemyDead = false;
+            }
         }
 
         gameOverCanva.SetActive(isGameOver);

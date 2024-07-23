@@ -6,6 +6,8 @@ public class BossController : MonoBehaviour {
 
     private int lifePoints = 10;
 
+    [HideInInspector] public static bool isBossDead = false;
+
     private Vector3 offset = new(-0.16f, -1.5f, 0f);
 
     void Start() {
@@ -15,9 +17,12 @@ public class BossController : MonoBehaviour {
     void Update() {
         if(lifePoints <= 0) {
             Destroy(gameObject);
-            PlayerController.score += 5;
+            isBossDead = true;
+            PlayerController.score += 3;
             EnemySpawner.isBossWave = false;
             EnemySpawner.isBossSpawned = false;
+            EnemySpawner.repeatingDelay -= 0.50f;
+            EnemyBulletController.bulletSpeed += 0.50f;
         }
     }
 

@@ -4,6 +4,8 @@ public class EnemyController : MonoBehaviour {
 
     public GameObject bullet;
 
+    [HideInInspector] public static bool isEnemyDead = false;
+
     private Vector3 offset = new Vector3(0f, -0.5f, 0f);
 
     private float startDelay = 0.5f, repeatingDelay = 1f;
@@ -22,6 +24,7 @@ public class EnemyController : MonoBehaviour {
         if(collision.gameObject.CompareTag("Bullet")) {
             Destroy(gameObject);
             Destroy(collision.gameObject);
+            isEnemyDead = true;
             PlayerController.score++;
         }
     }
